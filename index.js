@@ -28,9 +28,45 @@ function megjelenit(){
     jatekTer[0].insertAdjacentHTML("beforeend",hmtlKod)
     const gombElemek=document.querySelectorAll(".gombok button")
     gombElemek[0].addEventListener("click",kivalaszt)
+    gombElemek[1].addEventListener("click",kivalaszt)
+    gombElemek[2].addEventListener("click",kivalaszt)
 }
 function kivalaszt(){
     const kep=document.querySelector("#jatekos img")
-    console.log(kep)
-    kep.src="kepek/ko.png"
+    console.log(event.target)
+    console.log(event.target.id)
+    kep.src=`kepek/${event.target.id}.PNG`
+    gepvalasztas()
+}
+function gepvalasztas(jValasztas){
+  const kep = document.querySelector("#gep img")
+  console.log(kep)
+  let veletlen= Math.floor(Math.random()*3)
+  console.log(veletlen)
+  if( veletlen == 0){
+    kep.src ="kepek/ko.PNG"
+  }else if(veletlen == 1){
+    kep.src ="kepek/papir.PNG"
+  }else{
+    kep.src ="kepek/ollo.PNG"
+  }
+  ellenorzes()
+}
+function ellenorzes(veletlen,jValasztas ){
+  let f1 =(jValasztas== "ko" && veletlen ==2)
+  let f2 =(jValasztas== "papir" && veletlen ==0)
+  let f3 =(jValasztas== "ollo" && veletlen ==1)
+
+  let f4 =(jValasztas== "ollo" && veletlen ==1)
+  let f5 =(jValasztas== "ollo" && veletlen ==1)
+  let f6 =(jValasztas== "ollo" && veletlen ==1)
+
+  let szoveg = ""
+  if(f1 || f2 || f3){
+    szoveg = "Játékos nyert"
+  }else if(f4 ||f5 || f6){
+    szoveg = "Gép nyert"
+  }else{
+    soveg = "döntetlen"
+  }
 }
